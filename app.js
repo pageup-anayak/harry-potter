@@ -3,6 +3,7 @@ const {
   getCharacters,
   getCharacterById,
   addOrUpdateCharacter,
+  deleteCharacter,
 } = require("./dynamo");
 const app = express();
 
@@ -66,7 +67,15 @@ app.put("/characters/:id", async (req, res) => {
   }
 });
 
-app.delete("/characters/:id", async (req, res) => {});
+app.delete("/characters/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    res.json(await deleteCharacter(id));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err: "Something went wrong" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
