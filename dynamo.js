@@ -10,6 +10,8 @@ AWS.config.update({
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "harrypotter-api";
 
+// make sure to create table with TABLE_NAME and provide id as partition key on dynamoDB
+
 const getCharacters = async () => {
   const params = {
     TableName: TABLE_NAME,
@@ -55,37 +57,3 @@ module.exports = {
   addOrUpdateCharacter,
   deleteCharacter,
 };
-
-// getCharacters();
-// const hp = {
-//   id: "0",
-//   name: "Harry Potter",
-//   alternate_names: [
-//     "The Boy Who Lived",
-//     "The Chosen One",
-//     "Undesirable No. 1",
-//     "Potty",
-//   ],
-//   species: "human",
-//   gender: "male",
-//   house: "Gryffindor",
-//   dateOfBirth: "31-07-1980",
-//   yearOfBirth: 1980,
-//   wizard: true,
-//   ancestry: "half-blood",
-//   eyeColour: "green",
-//   hairColour: "black",
-//   wand: {
-//     wood: "holly",
-//     core: "phoenix tail feather",
-//     length: 11,
-//   },
-//   patronus: "stag",
-//   hogwartsStudent: true,
-//   hogwartsStaff: false,
-//   actor: "Daniel Radcliffe",
-//   alternate_actors: [],
-//   alive: true,
-//   image: "https://ik.imagekit.io/hpapi/harry.jpg",
-// };
-// addOrUpdateCharacter(hp);
